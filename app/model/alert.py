@@ -12,3 +12,4 @@ class AlertQueue(Base):
     product_link: Mapped[str] = mapped_column(String())
     product_price: Mapped[str] = mapped_column(String())
     user_email: Mapped[str] = mapped_column(String())
+    sent: Mapped[int] = mapped_column(String(), default='0')

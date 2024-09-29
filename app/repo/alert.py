@@ -2,7 +2,7 @@ from app.db import engine
 
 from app.model.alert import AlertQueue
 
-from sqlalchemy import select, delete, insert
+from sqlalchemy import select, update, insert
 
 class AlertQueueRepo:
 
@@ -11,7 +11,7 @@ class AlertQueueRepo:
 
     def get_queue(self):
         
-        select_stmt = select(AlertQueue)
+        select_stmt = select(AlertQueue).where(AlertQueue.sent == '0')
         result = self.con.execute(select_stmt).fetchall()
 
         return result
@@ -41,8 +41,8 @@ class AlertQueueRepo:
         self.con.commit()
     
     def remove_queue(self, id):
-        
-        delete_stmt = delete(AlertQueue).where(AlertQueue.id == id)
 
-        self.con.execute(delete_stmt)
+        update_stmt = update(AlertQueue).where(AlertQueue.id == id).values(sent='1')        
+
+        self.con.execute(update_stmt)
         self.con.commit()
