@@ -1,1 +1,8 @@
-
+name: api-action
+on: [push]
+jobs:
+  deployment:
+    runs-on: rasp
+    steps:
+      - run: ls
+      - name: just a test
