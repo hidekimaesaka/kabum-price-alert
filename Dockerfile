@@ -17,7 +17,7 @@ RUN pip install -r requirements.txt
 RUN pip install gunicorn
 
 # exposing container port
-EXPOSE 5000:5000
+EXPOSE 5000
 
 # run entrypoint
 ENTRYPOINT ["./start.sh"]
