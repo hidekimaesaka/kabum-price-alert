@@ -2,7 +2,7 @@ name: api-action
 on: [push]
 jobs:
   deployment:
-    runs-on: rasp
+    runs-on: self-hosted
     steps:
       - run: ls
       - name: just a test
