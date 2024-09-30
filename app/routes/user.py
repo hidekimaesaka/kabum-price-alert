@@ -11,9 +11,9 @@ def create_user():
 
     new_user = request.get_json()
 
-    created = user_repo.create_user(**new_user)
+    status = user_repo.create_user(**new_user)
 
-    return jsonify(user_created=created)
+    return jsonify(msg=status)
 
 
 def init(app: Flask):

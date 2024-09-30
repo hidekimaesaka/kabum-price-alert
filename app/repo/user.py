@@ -15,6 +15,13 @@ class UserRepo:
         result = self.con.execute(select_stmt).fetchall()
 
         return result
+    
+    def get_user_by_email(self, mail):
+
+        select_stmt = select(User).where(User.mail == mail)
+        result = self.con.execute(select_stmt).fetchall()
+
+        return result
 
     def create_user(self, **user):
         
@@ -28,7 +35,12 @@ class UserRepo:
             mail=mail
         )
 
-        self.con.execute(insert_stmt)
-        self.con.commit()
 
-        return True
+        try:
+            self.con.execute(insert_stmt)
+            self.con.commit()
+        except Exception as e:
+            if 'UNIQUE' in str(e):
+                return 'mail already exists'
+
+        return 'user created'
