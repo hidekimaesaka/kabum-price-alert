@@ -7,3 +7,9 @@ jobs:
       - run: ls
       - name: just a test
         uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t api-action .
+
+      - name: Run Docker container in detached mode
+        run: docker run -d --name api-action api-action
