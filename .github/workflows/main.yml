@@ -7,6 +7,12 @@ jobs:
       - run: ls
       - name: just a test
         uses: actions/checkout@v4
+        
+      - name: Remove old container and image
+        run: |
+          docker stop api-action
+          docker rm api-action
+          docker rmi api-action
 
       - name: Build Docker image
         run: docker build -t api-action .
