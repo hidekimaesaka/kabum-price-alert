@@ -6,3 +6,4 @@ jobs:
     steps:
       - run: ls
       - name: just a test
+        uses: actions/checkout@v4
